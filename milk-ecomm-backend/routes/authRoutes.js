@@ -197,7 +197,18 @@ router.post('/login', (req, res) => {
     }
 });
 
-
+router.post('/subscribe', (req, res) => {
+    const subscribeSql = "INSERT INTO subscription (`subscribeEmail`) VALUES (?)";
+    const email = req.body.subscribeEmail;
+    db.query(subscribeSql, [email], (err, data) => {
+        if (err) {
+            console.error('Error inserting email into the database:', err);
+            return res.status(500).json({ success: false, message: 'Error inserting email into the database.' });
+        } else {
+            return res.status(200).json({ success: true });
+        }
+    })
+});
 
 router.post('/verify', (req, res) => {
     const enteredOtp = req.body.otp;

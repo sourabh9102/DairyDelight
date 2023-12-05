@@ -101,6 +101,7 @@ router.post('/login', (req, res) => {
                         req.session.fname = user.fname;
                         const name = user.name;
                         const token = jwt.sign({ name }, process.env.JWT_SECRET_KEY, { expiresIn: 300 });
+                        console.log(token, 'token');
                         res.cookie('token', token);
 
                         const email = req.body.email;

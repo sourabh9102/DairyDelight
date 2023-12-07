@@ -115,9 +115,6 @@ router.post('/login', (req, res) => {
 
                         console.log(userData, "user ke bare me");
 
-
-
-
                         const updateTokenSql = "UPDATE users SET token = ? where email = ?";
                         db.query(updateTokenSql, [token, email], (updateErr, updateResult) => {
                             if (updateErr) {
